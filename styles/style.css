@@ -149,7 +149,10 @@
     1px 0 var(--outline-tone), 0 -1px var(--outline-tone);
 }
 
-@supports ((text-stroke: 1px var(--outline-tone)) or (-webkit-text-stroke: 1px var(--outline-tone))) {
+@supports (
+  (text-stroke: 1px var(--outline-tone)) or
+    (-webkit-text-stroke: 1px var(--outline-tone))
+) {
   .card__img-tag {
     -webkit-text-stroke: 1px var(--outline-tone);
     text-stroke: 1px var(--outline-tone);
@@ -276,10 +279,6 @@
   background-color: var(--base-color);
   white-space: nowrap;
 }
-/*
-.button-save__text {
-  font-size: clamp(0.8125rem, 0.79rem + 0.09vw, 0.875rem);
-}*/
 
 /* ========================================
    МОДАЛЬНОЕ ОКНО
@@ -325,7 +324,6 @@ dialog::backdrop {
    ======================================== */
 
 @media (width < 376px) {
-  
   .header {
     margin: 100px auto;
   }
@@ -348,13 +346,4 @@ dialog::backdrop {
     width: 28px;
     height: 28px;
   }
-
-  /*.button-save__text {
-    font-size: 14px;
-    max-width: 266px;
-  }
-
-  .button_save {
-    padding: 15px 0;
-  }*/
 }
