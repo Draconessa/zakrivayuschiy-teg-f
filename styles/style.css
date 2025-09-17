@@ -38,10 +38,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: clamp(20.4375rem, 19.54rem + 3.85vw, 23rem);
   margin: 100px auto 98px auto;
-  padding: 25px 0;
-  gap: 23px;
+  padding: clamp(120px, 117.18px + 0.75vw, 128px) 0;
+  gap: 20px;
   font-family: var(--accent-font);
 }
 
@@ -52,6 +51,7 @@
 }
 
 .header__tag {
+  line-height: 100%;
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
 }
 
@@ -76,9 +76,8 @@
 
 .card__title {
   padding: 5px 10px;
-  min-height: 32px;
   font-size: 18px;
-  line-height: 100%;
+  line-height: 1.111111111;
   font-variation-settings: "wght" var(--text-bold);
   border-bottom: var(--border-size) solid var(--primary-tone);
 }
@@ -182,7 +181,9 @@
 }
 
 .card__icon-button {
-  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0;
   height: 38px;
   width: 39px;
   background-color: transparent;
@@ -238,6 +239,7 @@
 
 .card__like-button {
   justify-content: center;
+  align-items: center;
   max-width: 130px;
 }
 
@@ -330,7 +332,7 @@ dialog::backdrop {
 
   .card__title {
     padding: 4px 10px;
-    line-height: 1.2;
+    line-height: 1.221;
   }
 
   .card__img-block {
