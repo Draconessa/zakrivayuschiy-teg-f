@@ -35,12 +35,13 @@
 
 .header {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: clamp(20.4375rem, 19.54rem + 3.85vw, 23rem);
   margin: 100px auto 98px auto;
   padding: 25px 0;
-  gap: 24px;
+  gap: 23px;
   font-family: var(--accent-font);
 }
 
@@ -55,10 +56,8 @@
 }
 
 .header__title {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 20px;
+  line-height: 100%;
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
   text-transform: uppercase;
 }
@@ -77,22 +76,26 @@
 
 .card__title {
   padding: 5px 10px;
-  min-height: 30px;
+  min-height: 32px;
   font-size: 18px;
   line-height: 100%;
   font-variation-settings: "wght" var(--text-bold);
+  border-bottom: var(--border-size) solid var(--primary-tone);
 }
 
 .card__img-block {
   position: relative;
   overflow: hidden;
-  max-height: 700px;
-  border-top: var(--border-size) solid var(--primary-tone);
-  border-bottom: var(--border-size) solid var(--primary-tone);
+  max-height: 696px;
+  max-width: 696px;
+  aspect-ratio: 1 / 1;
 }
 
 .card__img {
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
   border: none;
 }
 
@@ -100,35 +103,35 @@
    CSS ФИЛЬТРЫ ДЛЯ ИЗОБРАЖЕНИЙ
    ======================================== */
 
-.vivid-colors {
+.saturate-hue-rotate {
   filter: saturate(250%) hue-rotate(25deg);
 }
 
-.monochrome-vintage {
-  filter: grayscale(60%) saturate(110%) contrast(140%) brightness(85%) blur(1px);
+.grayscale-saturate-contrast-brightness {
+  filter: grayscale(60%) saturate(110%) contrast(140%) brightness(85%);
 }
 
-.high-contrast {
-  filter: grayscale(30%) saturate(130%) contrast(160%) blur(1px);
+.grayscale-saturate-contrast {
+  filter: grayscale(30%) saturate(130%) contrast(160%);
 }
 
-.negative-effect {
-  filter: sepia(15%) brightness(110%) invert(75%) blur(1px);
+.sepia-brightness-invert {
+  filter: sepia(15%) brightness(110%) invert(75%);
 }
 
-.warm-tone {
+.grayscale-sepia {
   filter: grayscale(45%) sepia(20%);
 }
 
-.color-shift {
+.hue-rotate {
   filter: hue-rotate(200deg);
 }
 
-.muted-vintage {
+.grayscale-saturate-sepia {
   filter: grayscale(75%) saturate(65%) sepia(25%);
 }
 
-.soft-glow {
+.grayscale-brightness-opacity {
   filter: grayscale(25%) brightness(95%) opacity(85%);
 }
 
@@ -142,13 +145,13 @@
   color: var(--primary-tone);
   opacity: 0.5;
   mix-blend-mode: hard-light;
-  -webkit-text-stroke: 1px var(--outline-tone);
   text-shadow: -1px 0 var(--outline-tone), 0 1px var(--outline-tone),
     1px 0 var(--outline-tone), 0 -1px var(--outline-tone);
 }
 
-@supports (text-stroke: 1px var(--outline-tone)) {
+@supports ((text-stroke: 1px var(--outline-tone)) or (-webkit-text-stroke: 1px var(--outline-tone))) {
   .card__img-tag {
+    -webkit-text-stroke: 1px var(--outline-tone);
     text-stroke: 1px var(--outline-tone);
     text-shadow: none;
   }
@@ -159,23 +162,26 @@
   flex-direction: column;
   padding: 25px 25px;
   gap: 25px;
+  border-top: var(--border-size) solid var(--primary-tone);
 }
 
 .card__text {
   font-size: 18px;
-  line-height: 21px;
+  line-height: 1.1666666666666667;
 }
 
 .card__button {
   display: flex;
   align-items: flex-start;
+  gap: 7px;
   margin-left: auto;
   block-size: 38px;
 }
 
 .card__icon-button {
   box-sizing: border-box;
-  max-height: 38px;
+  height: 38px;
+  width: 39px;
   background-color: transparent;
   cursor: pointer;
   border: var(--border-size) solid rgb(0 0 0 / 0);
@@ -265,10 +271,15 @@
   align-items: center;
   width: clamp(19.125rem, 18.49rem + 2.72vw, 20.9375rem);
   margin: 50px auto;
-  padding: 15px 17px;
+  padding: 15px clamp(5px, 0.77px + 1.13vw, 17px);
   gap: 8px;
   background-color: var(--base-color);
+  white-space: nowrap;
 }
+/*
+.button-save__text {
+  font-size: clamp(0.8125rem, 0.79rem + 0.09vw, 0.875rem);
+}*/
 
 /* ========================================
    МОДАЛЬНОЕ ОКНО
@@ -305,6 +316,10 @@ dialog::backdrop {
   line-height: 150%;
 }
 
+.button-ok {
+  text-transform: uppercase;
+}
+
 /* ========================================
    АДАПТИВНЫЕ СТИЛИ
    ======================================== */
@@ -321,7 +336,8 @@ dialog::backdrop {
   }
 
   .card__img-block {
-    max-height: 375px;
+    max-height: 371px;
+    max-width: 371px;
   }
 
   .button_save {
@@ -333,8 +349,12 @@ dialog::backdrop {
     height: 28px;
   }
 
-  .card__list {
-    gap: 50px;
+  /*.button-save__text {
+    font-size: 14px;
+    max-width: 266px;
   }
 
+  .button_save {
+    padding: 15px 0;
+  }*/
 }
